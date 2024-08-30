@@ -1,0 +1,1 @@
+import { createError } from './src/index';
