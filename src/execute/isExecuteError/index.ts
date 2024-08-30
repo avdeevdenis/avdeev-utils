@@ -3,4 +3,4 @@ import { TResponseError, TResponseSuccessOrError } from '../../typings/createRes
 /**
  * Функция проверяет результат работы кода и возвращает union ts type если произошла ошибка
  */
-export const isExcecuteError = (response: TResponseSuccessOrError): response is TResponseError => Boolean(response.error);
+export const isExecuteError = (response: TResponseSuccessOrError): response is TResponseError => Boolean(response.error);
