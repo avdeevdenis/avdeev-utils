@@ -8,18 +8,18 @@
     "src"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=18",
+    "npm": ">=9"
   },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "publish": "np --no-tests"
   },
-  "peerDependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint"
@@ -32,8 +32,13 @@
     "trailingComma": "es5"
   },
   "name": "avdeev-utils",
-  "author": "Avdeev Denis",
+  "author": "Avdeev Denis inbox@avdeevdenis.com",
   "module": "dist/avdeev-utils.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avdeevdenis/avdeev-utils",
+    "directory": "/"
+  },
   "size-limit": [
     {
       "path": "dist/avdeev-utils.cjs.production.min.js",
@@ -46,7 +51,10 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.1.4",
+    "fs": "^0.0.1-security",
     "husky": "^9.1.4",
+    "np": "^10.0.7",
+    "npm": "^9.9.3",
     "size-limit": "^11.1.4",
     "tsdx": "^0.14.1",
     "tslib": "^2.6.3",
