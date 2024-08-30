@@ -4,7 +4,11 @@ import { createSuccess } from '../../createSuccess';
 /**
  * Есть договоренность — всегда возвращать объект такого типа
  */
-export type TResponse = ReturnType<typeof createSuccess | typeof createError>;
+export type TResponse = TResponseSuccessOrError;
+
+export type TResponseSuccessOrError = TResponseSuccess | TResponseError;
+export type TResponseSuccess = ReturnType<typeof createSuccess>;
+export type TResponseError = ReturnType<typeof createError>;
 
 /**
  * То же самое, что и выше, только для асинхронности

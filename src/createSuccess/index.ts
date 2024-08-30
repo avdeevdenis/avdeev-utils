@@ -1,3 +1,5 @@
+import { TResponseSuccess, TResponseSuccessOrError } from '../typings/createResponse';
+
 /**
  * Создает объект с успешным результатом работы кода
  */
@@ -10,3 +12,5 @@ export const createSuccess = (data?: Object) => {
 
   return SUCCESS_RESPONSE;
 };
+
+export const isResultSuccess = (response: TResponseSuccessOrError): response is TResponseSuccess => Boolean(response.success);
