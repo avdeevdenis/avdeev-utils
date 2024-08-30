@@ -53,6 +53,7 @@
     "@size-limit/preset-small-lib": "^11.1.4",
     "fs": "^0.0.1-security",
     "husky": "^9.1.4",
+    "luxon": "^3.5.0",
     "np": "^10.0.7",
     "npm": "^9.9.3",
     "size-limit": "^11.1.4",
