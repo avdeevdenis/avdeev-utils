@@ -8,8 +8,8 @@
     "src"
   ],
   "engines": {
-    "node": ">=18",
-    "npm": ">=9"
+    "node": "v20.11.0",
+    "npm": "^10"
   },
   "scripts": {
     "start": "tsdx watch",
@@ -54,7 +54,6 @@
     "fs": "^0.0.1-security",
     "husky": "^9.1.4",
     "np": "^10.0.7",
-    "npm": "^9.9.3",
     "size-limit": "^11.1.4",
     "tsdx": "^0.14.1",
     "tslib": "^2.6.3",
