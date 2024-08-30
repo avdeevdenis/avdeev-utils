@@ -1,27 +1,30 @@
-import { createError } from "../../createError";
-import { createSuccess } from "../../createSuccess";
-import { tryParseJSON } from "../../tryParseJSON";
-import { TResponse } from "../../typings/createResponse";
+import { createExecuteError, createExecuteSuccess } from '../../execute';
+import { tryParseJSON } from '../../tryParseJSON';
+import { TResponse } from '../../typings/createResponse';
 
 const fs = require('fs');
 
 /**
- * Возвращает содержимое файла, преобразованное, через 'JSON.parse()'
+ * Читает содержимое файла и возвращает его результат, преобразованный, через 'JSON.parse()'
  */
 export const getJSONFileContent = async (filepath: string): Promise<TResponse> => {
   if (!filepath) {
-    return Promise.resolve(createError('[getJSONFileContent] Prop pathname does not exists.'));
+    return Promise.resolve(createExecuteError('[getJSONFileContent] Prop pathname does not exists.'));
   }
 
   return new Promise((resolve) => {
     fs.readFile(filepath, 'utf8', (error: Error, content: Object) => {
       if (error) {
-        resolve(createError(error.message));
+        resolve(createExecuteError(error.message));
       } else {
         if (content && typeof content === 'string' && content.length) {
           const jsonContent = tryParseJSON<Object>(content);
 
-          resolve(jsonContent ? createSuccess(jsonContent) : createError('[getJSONFileContent] Cannot parse as JSON.'));
+          const resolveResult = jsonContent ?
+            createExecuteSuccess(jsonContent) :
+            createExecuteError('[getJSONFileContent] Cannot parse as JSON.')
+
+          resolve(resolveResult);
         }
       }
     });

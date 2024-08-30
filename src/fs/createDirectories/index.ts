@@ -1,5 +1,4 @@
-import { createSuccess } from "../../createSuccess";
-import { createError } from "../../createError";
+import { createExecuteError, createExecuteSuccess } from "../../execute";
 import { TResponse } from "../../typings/createResponse";
 
 const fs = require('fs');
@@ -12,7 +11,7 @@ const path = require('path');
  */
 export function createDirectories(filepath: string): Promise<TResponse> {
   if (!filepath) {
-    return Promise.resolve(createError('[createDirectories] Prop pathname does not exists.'));
+    return Promise.resolve(createExecuteError('[createDirectories] Prop pathname does not exists.'));
   }
 
   const __dirname = path.resolve();
@@ -23,9 +22,9 @@ export function createDirectories(filepath: string): Promise<TResponse> {
   return new Promise(resolve => {
     fs.mkdir(path.resolve(__dirname, onlyDirectories), { recursive: true }, (error: Error) => {
       if (error) {
-        resolve(createError(error.message));
+        resolve(createExecuteError(error.message));
       } else {
-        resolve(createSuccess());
+        resolve(createExecuteSuccess());
       }
     });
   });

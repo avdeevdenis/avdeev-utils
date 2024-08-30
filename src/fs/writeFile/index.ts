@@ -1,5 +1,4 @@
-import { createError } from "../../createError";
-import { createSuccess } from "../../createSuccess";
+import { createExecuteError, createExecuteSuccess } from "../../execute";
 import { TResponse } from "../../typings/createResponse";
 import { createDirectories } from "../createDirectories";
 
@@ -16,11 +15,9 @@ export const writeFile = async (filepath: string, fileContentJSON: Object): Prom
 
   return new Promise((resolve) => {
     fs.writeFile(filepath, JSON.stringify(fileContentJSON), { encoding: 'utf8' }, (error: Error) => {
-      if (error) {
-        resolve(createError(error.message));
-      } else {
-        resolve(createSuccess());
-      }
+      const resolveObject = error ? createExecuteError(error.message) : createExecuteSuccess();
+
+      resolve(resolveObject);
     });
   });
 };

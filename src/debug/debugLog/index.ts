@@ -1,17 +1,9 @@
 import { appendFile } from 'fs';
-import { createError } from '../../createError';
 import { createDirectories } from '../../fs';
 import { debugConsole } from '../debugConsole';
-import { createSuccess } from '../../createSuccess';
+import { createExecuteError, createExecuteSuccess } from '../../execute';
 
 const { DateTime } = require('luxon');
-
-/**
- * Метод записывает входящие данные 'logData' в файл с названием 'filepath'
- * Если файла не существует - создает по пути
- *
- * @example await debugLog(LOG_PATH, LOG_PREFIX + 'End. nothing left after processing.');
- */
 
 type DebugLogOptions = {
   /**
@@ -30,6 +22,12 @@ type DebugLogOptions = {
   data?: Object;
 };
 
+/**
+ * Метод записывает входящие данные 'logData' в файл с названием 'filepath'
+ * Если файла не существует - создает по пути
+ *
+ * @example await debugLog(LOG_PATH, LOG_PREFIX + 'End. nothing left after processing.');
+ */
 export const debugLog = async (filepath: string, logData: string, options?: DebugLogOptions) => {
   const isCorrectLogData = (
     logData &&
@@ -39,7 +37,7 @@ export const debugLog = async (filepath: string, logData: string, options?: Debu
   if (!isCorrectLogData) {
     const errorMessage = `Invalid logData '${logData}' to file '${filepath}'`;
     debugConsole(errorMessage);
-    return Promise.resolve(createError(errorMessage));
+    return Promise.resolve(createExecuteError(errorMessage));
   }
 
   const isCorrectLogFilePath = (
@@ -50,7 +48,7 @@ export const debugLog = async (filepath: string, logData: string, options?: Debu
   if (!isCorrectLogFilePath) {
     const errorMessage = `Invalid logFilePath '${filepath}'`;
     debugConsole(errorMessage);
-    return Promise.resolve(createError(errorMessage));
+    return Promise.resolve(createExecuteError(errorMessage));
   }
 
   const { success } = await createDirectories(filepath);
@@ -58,7 +56,7 @@ export const debugLog = async (filepath: string, logData: string, options?: Debu
   if (!success) {
     const errorMessage = `Error to create directory '${filepath}'`;
     debugConsole(errorMessage);
-    return Promise.resolve(createError(errorMessage));
+    return Promise.resolve(createExecuteError(errorMessage));
   }
 
   return new Promise(resolve => {
@@ -70,10 +68,10 @@ export const debugLog = async (filepath: string, logData: string, options?: Debu
       if (error) {
         const errorMessage = `debug_log appendFile error '${error.message}'`;
         debugConsole(errorMessage);
-        return resolve(createError(errorMessage));
+        return resolve(createExecuteError(errorMessage));
       }
 
-      return resolve(createSuccess());
+      return resolve(createExecuteSuccess());
     });
   });
 };
