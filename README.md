@@ -31,16 +31,20 @@ npm run publish
 - Методы для контроля хода выполнения функций
   - [createExecuteError](./src/execute/createExecuteError/index.ts)
   - [createExecuteSuccess](./src/execute/createExecuteSuccess/index.ts)
-- Методы для работы с JSON
+- Работа с JSON
   - [tryParseJSON](./src/tryParseJSON/index.ts)
-- Методы для работы с файловой системой
+- Файловая система
   - [createDirectories](./src/fs/createDirectories/index.ts)
   - [getFileContentAsJSON](./src/fs/getFileContentAsJSON/index.ts)
   - [writeFile](./src/fs/writeFile/index.ts)
 - Методы для отладки работы кода
   - [debugConsole](./src/debug/debugConsole/index.ts)
   - [debugLog](./src/debug/debugLog/index.ts)
-- Прочее вспомогательное
+- Телеграм
+  - [TelegramBotAPI](./src/telegram/TelegramBotAPI/index.ts)
+    - [Controller_SendMessage](./src/telegram/TelegramBotAPI/Controller_SendMessage/index.ts)
+- Прочее
+  - [getCatchErrorMessage](./src/error/getCatchErrorMessage/index.ts)
   - [delay](./src/delay/index.ts)
 
 Все.

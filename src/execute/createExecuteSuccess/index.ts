@@ -1,7 +1,7 @@
 /**
  * Создает объект с успешным результатом выполнения кода
  */
-export const createExecuteSuccess = (data?: Object) => {
+export function createExecuteSuccess<T>(data?: T) {
   const SUCCESS_RESPONSE = {
     // Признак, что все ОК
     success: true,

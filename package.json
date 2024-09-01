@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   ],
   "engines": {
     "node": "^20",
-    "npm": "^10"
+    "npm": "^9"
   },
   "scripts": {
     "start": "tsdx watch",
@@ -17,8 +17,7 @@
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why",
-    "publish": "np --no-tests"
+    "analyze": "size-limit --why"
   },
   "husky": {
     "hooks": {
@@ -60,6 +59,8 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "luxon": "^3.5.0"
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "luxon": "^3.5.0",
+    "node-telegram-bot-api": "^0.66.0"
   }
 }
