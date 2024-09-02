@@ -24,14 +24,14 @@ export class Controller_SendMessage extends ControllerBase {
   /**
    * Обрабатывается ли в данный момент отправка сообщения пользователя (необходимо для предотвращения DDOS)
    */
-  protected isSendMessageProcessing: boolean = false;
+  protected isProcessing: boolean = false;
 
-  protected setSendMessageProcessingState(isProcessing: boolean) {
-    this.isSendMessageProcessing = isProcessing;
+  protected setProcessingState(isProcessing: boolean) {
+    this.isProcessing = isProcessing;
   }
 
-  protected getSendMessageProcessingState() {
-    return this.isSendMessageProcessing;
+  protected getProcessingState() {
+    return this.isProcessing;
   }
 
   protected setLastSentMessageTS(ts: number) {
@@ -60,7 +60,7 @@ export class Controller_SendMessage extends ControllerBase {
     /**
      * При повторном вызове функции попадаем в эту ветку и ожидаем, когда завершится выполнение отправки предыдущего сообщения
      */
-    if (this.getSendMessageProcessingState()) {
+    if (this.getProcessingState()) {
       return new Promise((resolve) => {
         const recursionSendMessage = (intervalTimer: NodeJS.Timeout, timeoutTimer: NodeJS.Timeout) => {
           clearInterval(intervalTimer);
@@ -77,7 +77,7 @@ export class Controller_SendMessage extends ControllerBase {
           /**
            * Ждем, когда завершится отправка прошлого сообщения
            */
-          if (!this.getSendMessageProcessingState()) {
+          if (!this.getProcessingState()) {
             recursionSendMessage(intervalTimer, timeoutTimer);
           }
         }, INTERVAL_STEP);
@@ -93,7 +93,7 @@ export class Controller_SendMessage extends ControllerBase {
       });
     }
 
-    this.setSendMessageProcessingState(true);
+    this.setProcessingState(true);
 
     const lastSentMessageTS = this.getLastSentMessageTS();
 
@@ -150,7 +150,7 @@ export class Controller_SendMessage extends ControllerBase {
       /**
        * Тут выполнение закончено
        */
-      this.setSendMessageProcessingState(false);
+      this.setProcessingState(false);
     }
   }
 }
