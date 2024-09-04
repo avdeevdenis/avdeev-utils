@@ -9,8 +9,10 @@ import { SendMessageController } from './typings';
  * 
  * Внутри реализована логика очереди, при попытке отправить сообщение чаще заданного интервала — программа будет ждать
  * и отправит только тогда, когда пройдет не менее `TIME_OFFSET_BETWEEN_NEXT_MESSAGE_SEND` мс с момента отправки последнего сообщения
+ * 
+ * 3 сообщения в секунду должно быть норм (с 4 падает с ошибкой too many requests)
  */
-const TIME_OFFSET_BETWEEN_NEXT_MESSAGE_SEND = 1_000 / 4; // 4 сообщения в секунду звучит норм
+const TIME_OFFSET_BETWEEN_NEXT_MESSAGE_SEND = 1_000 / 3;
 
 /**
  * Контроллер, отвечающий за отправку сообщений
