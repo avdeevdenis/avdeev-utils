@@ -90,7 +90,7 @@ export const prepareLogData = (logData: string, options?: DebugLogOptions) => {
    */
   const newLine = isFirstLogMessage ? '\n\n' : '\n';
 
-  const now = DateTime.now().setZone('Europe/Moscow').toISOTime();
+  const now = DateTime.now().setZone('Europe/Moscow').toISO();
 
   let preparedLogData = '';
 
