@@ -10,7 +10,7 @@
 
 Для использования пакета на проекте достаточно его установить:
 ```
-npm install @avdeev-utils@latest
+npm install avdeev-utils@latest --save-dev
 ```
 
 ## Обновление версии пакета

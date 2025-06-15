@@ -1,0 +1,17 @@
+src/
+tests/
+__tests__/
+.storybook/
+.gitignore
+.npmignore
+.eslintrc
+.eslintrc.json
+tsconfig.json
+tsconfig.build.json
+jest.config.js
+rollup.config.js
+webpack.config.js
+.env*
+.vscode/
+*.md
+*.test.*
